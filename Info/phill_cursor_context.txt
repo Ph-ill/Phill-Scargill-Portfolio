@@ -1,0 +1,85 @@
+
+# USER CONTEXT FILE FOR CURSOR AI
+
+## PERSONAL INFO
+Name: Phillip W. Scargill
+Location: Austin, TX, USA
+Email: phill.scargill@gmail.com
+Phone: (737) 328-0848
+GitHub: https://github.com/Ph-ill
+
+## BIO
+Experienced Control Systems Engineer with over 7 years of hands-on expertise in automation across industrial, manufacturing, and energy sectors. Multidisciplinary background in PLC programming, SCADA/HMI development, full-stack software development, system administration, and eCommerce operations. Relocated to the U.S. with valid work authorization (EAD). Currently exploring new Control Systems Engineering roles while actively developing open-source software.
+
+## TECHNICAL SKILLS
+Control Systems: RsLogix 5/500/5000, TIA Portal, Simatic S7, CCW, RsLinx, WinCC, GE iFix, FactoryTalk ME/SE  
+Programming/Scripting: Python, JavaScript, Node.js, C#, Bash, Batch, Powershell, VBScript  
+Web Development: HTML, CSS, JQuery, JavaScript, Bootstrap  
+SysAdmin: Docker, Portainer, SSH, VPN, DNS, DHCP, FTP/SFTP/SCP, Wireshark, Active Directory, Filezilla, WinSCP  
+Tools: Git, MSSQL, MySQL, Office 365, Evernote, Mailchimp, G-suite  
+OS: Windows (3.0 to 11), macOS, Android, GNU/Linux (Arch, Debian, RedHat, Fedora, SUSE, Gentoo, Ubuntu)  
+Design: Photoshop, Illustrator, Blender, Fusion, GIMP, AutoCAD, Inkscape  
+Cloud/DevOps: DigitalOcean, VMware, QEMU, VirtualBox, Clonezilla, Chocolatey
+
+## EDUCATION
+- Open University – BSc (Honors) in Computer and IT – In Progress (2017–Present)
+- CompTIA IT Fundamentals (ITF+) – Completed 2025
+- MAKE UK – Robotics Course – Completed 2018
+
+## EMPLOYMENT EXPERIENCE
+
+### Hyve Managed Hosting – Technical Support Engineer (2023)
+- Maintained Windows/Linux cloud servers
+- Designed analytics software to monitor server and VM metrics
+- Customer-facing issue resolution
+- Deployed and provisioned VMs
+
+### Néos Superform – Control Systems Engineer (2016–2021)
+- Designed, programmed, and commissioned PLC-based systems
+- Upgraded existing safety and automation logic
+- Collaborated across mechanical and software teams
+- Provided training and technical documentation
+
+### Cepha Controls – Control Systems Engineer (2012–2014)
+- End-to-end automation project delivery
+- Global project execution incl. UAE
+- PLC/SCADA/HMI design using ladder, structured text, and FBD
+- Industry domains: oil & gas, manufacturing, renewable energy
+
+### Freelance Web Developer & eCommerce Marketer (2021–Present)
+- Developed cryptocurrency project websites
+- Built and managed Shopify/Etsy stores
+- Automated inventory/shipping via scripts and 3PL APIs
+- Data-driven social media and A/B testing strategies
+
+## PROJECTS
+
+### Digestarr – https://github.com/Ph-ill/Digestarr
+- Python tool for generating daily digests from Radarr/Sonarr
+- Sends messages via Telegram or WhatsApp using ChatMeBot
+- Flask-based configuration panel
+- Built for Plex, Jellyfin, or Emby server users
+
+### Capwise – https://github.com/Ph-ill/Capwise
+- JavaScript-based educational flashcard app
+- Browser extension-like UI
+- Offline-first architecture
+
+### Heat Death – https://github.com/Euphonia-Games/Heat-Death
+- Unity/C# game developed by Euphonia Games
+- Contributed to game logic and codebase structuring
+- Procedural generation and modular components
+
+### Anon-TV – https://github.com/Ph-ill/Anon-TV
+- Android TV browsing app for imageboard content
+- User-configurable endpoints
+- Tailored for TV remote interaction
+- Focused on performance and simplicity
+
+## NOTES
+- Prefers minimal and functional design
+- Interested in embedded systems and smart TV development
+- Maintains a high level of Linux proficiency across distros
+- Values automation, safety, and system observability
+
+# END OF CONTEXT

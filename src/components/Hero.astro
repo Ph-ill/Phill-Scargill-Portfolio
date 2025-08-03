@@ -148,6 +148,13 @@ import { siteConfig } from "../config";
       >
         {siteConfig.title}
       </p>
+      {siteConfig.location && (
+        <p
+          class="mt-2 sm:mt-4 md:mt-6 text-pretty text-sm sm:text-base md:text-lg text-gray-500 animate-fade-in animation-delay-500"
+        >
+          📍 {siteConfig.location}
+        </p>
+      )}
     </div>
   </div>
   <div
@@ -213,12 +220,12 @@ import { siteConfig } from "../config";
       )
     }
     {
-      siteConfig.social?.twitter && (
+      siteConfig.social?.instagram && (
         <a
-          href={siteConfig.social.twitter}
+          href={`https://instagram.com/${siteConfig.social.instagram.replace('@', '')}`}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Twitter"
+          aria-label="Instagram"
           class="transition-colors duration-300 hover:text-[var(--accent-color)]"
         >
           <svg
@@ -235,8 +242,9 @@ import { siteConfig } from "../config";
           >
             <>
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
-              <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
+              <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1 -5 5h-10a5 5 0 0 1 -5 -5v-10a5 5 0 0 1 5 -5z" />
+              <path d="M16 11.37a4 4 0 1 1 -7.914 1.173a4 4 0 0 1 7.914 -1.173z" />
+              <path d="M17.5 6.5h.01" />
             </>
           </svg>
         </a>
@@ -301,5 +309,9 @@ import { siteConfig } from "../config";
 
   .animation-delay-600 {
     animation-delay: 0.6s;
+  }
+
+  .animation-delay-500 {
+    animation-delay: 0.5s;
   }
 </style>

@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  portfolio:
+    build: .
+    container_name: phill-portfolio
+    ports:
+      - "80:80"
+      - "443:443"  # For HTTPS if you set it up later
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    volumes:
+      # Optional: mount logs for debugging
+      - ./logs:/var/log/nginx
+    networks:
+      - portfolio-network
+
+networks:
+  portfolio-network:
+    driver: bridge 

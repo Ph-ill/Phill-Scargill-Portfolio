@@ -71,10 +71,10 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
             >
           </a>
           <a
-            href={siteConfig.social.twitter}
+            href={`https://instagram.com/${siteConfig.social.instagram.replace('@', '')}`}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Twitter"
+            aria-label="Instagram"
             class="text-gray-600 transition-colors duration-300 hover:text-[var(--accent-color)]"
             style={`--accent-color: ${siteConfig.accentColor}`}
           >
@@ -90,8 +90,9 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
               stroke-linejoin="round"
               class="h-6 w-6"
               ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-                d="M4 4l11.733 16h4.267l-11.733 -16z"></path><path
-                d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path></svg
+                d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1 -5 5h-10a5 5 0 0 1 -5 -5v-10a5 5 0 0 1 5 -5z"></path><path
+                d="M16 11.37a4 4 0 1 1 -7.914 1.173a4 4 0 0 1 7.914 -1.173z"></path><path
+                d="M17.5 6.5h.01"></path></svg
             >
           </a>
           <a
