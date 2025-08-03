@@ -1,4 +1,4 @@
-# Phillip W. Scargill - Portfolio
+# Phill Scargill - Portfolio
 
 A modern, minimalist portfolio website showcasing my work as a Control Systems Engineer with expertise in automation, PLC programming, and full-stack development.
 

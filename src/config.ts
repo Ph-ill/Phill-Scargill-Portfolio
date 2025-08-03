@@ -1,7 +1,7 @@
 export const siteConfig = {
-  name: "Phillip W. Scargill",
+  name: "Phill Scargill",
   title: "Control Systems Engineer",
-  description: "Portfolio website of Phillip W. Scargill - Control Systems Engineer with expertise in automation, PLC programming, and full-stack development",
+  description: "Portfolio website of Phill Scargill - Control Systems Engineer with expertise in automation, PLC programming, and full-stack development",
   accentColor: "#8b5cf6",
   location: "Austin, TX",
   social: {
@@ -10,6 +10,7 @@ export const siteConfig = {
     instagram: "@phllop",
     github: "https://github.com/Ph-ill",
   },
+  resume: "/Phill Resume.pdf",
   aboutMe:
     "Experienced Control Systems Engineer with over 7 years of hands-on expertise in automation across industrial, manufacturing, and energy sectors. Multidisciplinary background in PLC programming, SCADA/HMI development, full-stack software development, system administration, and eCommerce operations. Relocated to the U.S. with valid work authorization (EAD). Currently exploring new Control Systems Engineering roles while actively developing open-source software.",
   skills: [
