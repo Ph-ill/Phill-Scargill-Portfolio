@@ -5,7 +5,7 @@ services:
     build: .
     container_name: phill-portfolio
     ports:
-      - "90:80"
+      - "90:90"
     restart: unless-stopped
     environment:
       - NODE_ENV=production
