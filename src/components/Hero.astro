@@ -130,31 +130,53 @@ import { siteConfig } from "../config";
       stroke-width={0}></rect>
   </svg>
   <div class="h-full mx-auto p-8 sm:p-12 md:p-24 flex items-center">
-    <div>
-      <h2
-        class="text-pretty text-xl sm:text-2xl md:text-5xl font-bold tracking-tight text-gray-700 animate-fade-in"
-      >
-        Hello! 👋
-      </h2>
-      <h1
-        class="mt-6 sm:mt-8 md:mt-10 text-pretty text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold tracking-tight text-gray-800 animate-fade-in animation-delay-200"
-      >
-        I'm <span style={{ color: siteConfig.accentColor }}
-          >{siteConfig.name}</span
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full">
+      <!-- Text Content -->
+      <div class="order-2 lg:order-1">
+        <h2
+          class="text-pretty text-xl sm:text-2xl md:text-5xl font-bold tracking-tight text-gray-700 animate-fade-in"
         >
-      </h1>
-      <p
-        class="mt-4 sm:mt-6 md:mt-8 text-pretty text-base sm:text-lg md:text-xl/8 font-medium text-gray-600 animate-fade-in animation-delay-400"
-      >
-        {siteConfig.title}
-      </p>
-      {siteConfig.location && (
+          Hello! 👋
+        </h2>
+        <h1
+          class="mt-6 sm:mt-8 md:mt-10 text-pretty text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold tracking-tight text-gray-800 animate-fade-in animation-delay-200"
+        >
+          I'm <span style={{ color: siteConfig.accentColor }}
+            >{siteConfig.name}</span
+          >
+        </h1>
         <p
-          class="mt-2 sm:mt-4 md:mt-6 text-pretty text-sm sm:text-base md:text-lg text-gray-500 animate-fade-in animation-delay-500"
+          class="mt-4 sm:mt-6 md:mt-8 text-pretty text-base sm:text-lg md:text-xl/8 font-medium text-gray-600 animate-fade-in animation-delay-400"
         >
-          📍 {siteConfig.location}
+          {siteConfig.title}
         </p>
-      )}
+        {siteConfig.location && (
+          <p
+            class="mt-2 sm:mt-4 md:mt-6 text-pretty text-sm sm:text-base md:text-lg text-gray-500 animate-fade-in animation-delay-500"
+          >
+            📍 {siteConfig.location}
+          </p>
+        )}
+      </div>
+
+      <!-- Profile Picture -->
+      <div class="order-1 lg:order-2 flex justify-center lg:justify-end">
+        <div class="relative">
+          <div class="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-2xl border-4 border-white animate-fade-in animation-delay-300">
+            <img
+              src="/profile-photo.jpg"
+              alt={`${siteConfig.name} - ${siteConfig.title}`}
+              class="w-full h-full object-cover"
+              loading="eager"
+            />
+          </div>
+          <!-- Decorative ring -->
+          <div 
+            class="absolute inset-0 rounded-full border-4 border-transparent"
+            style={`background: linear-gradient(45deg, ${siteConfig.accentColor}40, ${siteConfig.accentColor}20, ${siteConfig.accentColor}40)`}
+          ></div>
+        </div>
+      </div>
     </div>
   </div>
   <div
@@ -301,6 +323,10 @@ import { siteConfig } from "../config";
 
   .animation-delay-200 {
     animation-delay: 0.2s;
+  }
+
+  .animation-delay-300 {
+    animation-delay: 0.3s;
   }
 
   .animation-delay-400 {
