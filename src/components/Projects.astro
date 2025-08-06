@@ -31,7 +31,7 @@ const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
                   : {};
 
                 return (
-                  <div class="group relative">
+                  <div class="group relative py-2 px-1">
                     <Component
                       {...linkProps}
                       class={`block relative p-4 sm:p-6 md:p-8 bg-gray-50 rounded-xl sm:rounded-2xl border border-gray-200 transition-all duration-300 ${
@@ -40,8 +40,34 @@ const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
                           : ""
                       }`}
                     >
+                                      {/* Bubble Animation */}
+                {project.link && (
+                  <div class="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-hidden rounded-xl sm:rounded-2xl">
+                    {(() => {
+                      // Define project-specific emojis based on project name
+                      let emojis = [];
+                      if (project.name.includes("Digestarr")) {
+                        emojis = ["📬", "📨", "📧", "📱", "🔔", "📨", "📬", "📧", "📱", "🔔", "📨", "📬"];
+                      } else if (project.name.includes("Capwise")) {
+                        emojis = ["🎬", "🍿", "⭐", "🎥", "📱", "👍", "🎬", "🍿", "⭐", "🎥", "📱", "👍"];
+                      } else if (project.name.includes("Anon-TV")) {
+                        emojis = ["📺", "📹", "📱", "🎮", "🌐", "🍀", "📺", "📹", "📱", "🎮", "🌐", "🍀"];
+                      } else if (project.name.includes("Heat Death")) {
+                        emojis = ["🎮", "🔥", "🌎", "💀", "🏃", "⚔️", "🎮", "🔥", "🌎", "💀", "🏃", "⚔️"];
+                      } else {
+                        // Default bubbles
+                        emojis = ["💭", "🫧", "💭", "🫧", "💭", "🫧", "💭", "🫧", "💭", "🫧", "💭", "🫧"];
+                      }
+                      
+                      return emojis.map((emoji, index) => (
+                        <div key={index} class={`bubble bubble-${index + 1}`}>{emoji}</div>
+                      ));
+                    })()}
+                  </div>
+                )}
+
                       {project.link && (
-                        <div class="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 flex items-center justify-center bg-gray-900 rounded-full text-white transition-all duration-300 group-hover:bg-gray-700">
+                        <div class="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 flex items-center justify-center bg-gray-900 rounded-full text-white transition-all duration-300 group-hover:bg-gray-700 z-10">
                           <svg
                             class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                             fill="none"
@@ -58,7 +84,7 @@ const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
                         </div>
                       )}
 
-                      <div class="space-y-4">
+                      <div class="space-y-4 relative z-10">
                         <div>
                           <span
                             class="text-sm font-mono"
@@ -102,3 +128,165 @@ const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
     </section>
   )
 }
+
+<style>
+  .bubble {
+    position: absolute;
+    font-size: 1.2rem;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .group:hover .bubble {
+    animation: bubbleFloat 2s ease-out;
+  }
+
+  @keyframes bubbleFloat {
+    0% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    20% {
+      opacity: 0.8;
+    }
+    80% {
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateY(-200%);
+      opacity: 0;
+    }
+  }
+
+  .bubble-1 {
+    left: 15%;
+    bottom: 0;
+    animation-delay: 0s;
+    animation-duration: 1.8s;
+  }
+
+  .bubble-2 {
+    left: 35%;
+    bottom: 0;
+    animation-delay: 0.3s;
+    animation-duration: 2.2s;
+  }
+
+  .bubble-3 {
+    left: 55%;
+    bottom: 0;
+    animation-delay: 0.6s;
+    animation-duration: 1.9s;
+  }
+
+  .bubble-4 {
+    left: 75%;
+    bottom: 0;
+    animation-delay: 0.9s;
+    animation-duration: 2.1s;
+  }
+
+  .bubble-5 {
+    left: 25%;
+    bottom: 0;
+    animation-delay: 1.2s;
+    animation-duration: 1.7s;
+  }
+
+  .bubble-6 {
+    left: 65%;
+    bottom: 0;
+    animation-delay: 1.5s;
+    animation-duration: 2.0s;
+  }
+
+  .bubble-7 {
+    left: 45%;
+    bottom: 0;
+    animation-delay: 0.2s;
+    animation-duration: 2.1s;
+  }
+
+  .bubble-8 {
+    left: 85%;
+    bottom: 0;
+    animation-delay: 0.7s;
+    animation-duration: 1.8s;
+  }
+
+  .bubble-9 {
+    left: 10%;
+    bottom: 0;
+    animation-delay: 1.0s;
+    animation-duration: 2.0s;
+  }
+
+  .bubble-10 {
+    left: 80%;
+    bottom: 0;
+    animation-delay: 1.4s;
+    animation-duration: 1.9s;
+  }
+
+  .bubble-11 {
+    left: 30%;
+    bottom: 0;
+    animation-delay: 0.5s;
+    animation-duration: 2.2s;
+  }
+
+  .bubble-12 {
+    left: 70%;
+    bottom: 0;
+    animation-delay: 1.1s;
+    animation-duration: 1.7s;
+  }
+
+  .group:hover .bubble-1 {
+    animation: bubbleFloat 1.8s ease-out 0s infinite;
+  }
+
+  .group:hover .bubble-2 {
+    animation: bubbleFloat 2.2s ease-out 0.3s infinite;
+  }
+
+  .group:hover .bubble-3 {
+    animation: bubbleFloat 1.9s ease-out 0.6s infinite;
+  }
+
+  .group:hover .bubble-4 {
+    animation: bubbleFloat 2.1s ease-out 0.9s infinite;
+  }
+
+  .group:hover .bubble-5 {
+    animation: bubbleFloat 1.7s ease-out 1.2s infinite;
+  }
+
+  .group:hover .bubble-6 {
+    animation: bubbleFloat 2.0s ease-out 1.5s infinite;
+  }
+
+  .group:hover .bubble-7 {
+    animation: bubbleFloat 2.1s ease-out 0.2s infinite;
+  }
+
+  .group:hover .bubble-8 {
+    animation: bubbleFloat 1.8s ease-out 0.7s infinite;
+  }
+
+  .group:hover .bubble-9 {
+    animation: bubbleFloat 2.0s ease-out 1.0s infinite;
+  }
+
+  .group:hover .bubble-10 {
+    animation: bubbleFloat 1.9s ease-out 1.4s infinite;
+  }
+
+  .group:hover .bubble-11 {
+    animation: bubbleFloat 2.2s ease-out 0.5s infinite;
+  }
+
+  .group:hover .bubble-12 {
+    animation: bubbleFloat 1.7s ease-out 1.1s infinite;
+  }
+</style>
