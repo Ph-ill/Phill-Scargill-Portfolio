@@ -3,7 +3,7 @@ export const siteConfig = {
   title: "Control Systems Engineer",
   description: "Portfolio website of Phill Scargill - Control Systems Engineer with expertise in automation, PLC programming, and full-stack development",
   accentColor: "#8b5cf6",
-  location: "Austin, TX",
+  location: "Austin, TX 🤠",
   social: {
     email: "phill.scargill@gmail.com",
     linkedin: "https://www.linkedin.com/in/phillip-scargill-4a709a274/",
@@ -26,28 +26,28 @@ export const siteConfig = {
   ],
   projects: [
     {
-      name: "Digestarr",
+      name: "📬 Digestarr",
       description:
         "Python tool for generating daily digests from Radarr/Sonarr. Sends messages via Telegram or WhatsApp using ChatMeBot with Flask-based configuration panel. Built for Plex, Jellyfin, or Emby server users.",
       link: "https://github.com/Ph-ill/Digestarr",
       skills: ["Python", "Flask", "Telegram API", "Radarr/Sonarr"],
     },
     {
-      name: "Capwise",
+      name: "🎥 Capwise",
       description:
         "A full-stack web app for personalized movie discovery. Swipe through suggestions, build a taste profile, and get intelligent recommendations. Designed for API flexibility, it features interactive swiping, a watchlist, and secure API key management. Built with React, Node.js, Express.js, and NeDB, integrating with the TMDB API.",
       link: "https://github.com/Ph-ill/Capwise",
       skills: ["React", "Node.js", "Express.js", "NeDB", "TMDB API", "Full-Stack"],
     },
     {
-      name: "Anon-TV",
+      name: "📺 Anon-TV",
       description:
         "Google TV application for seamlessly browsing imageboard content, including webm and images, directly on your TV.",
       link: "https://github.com/Ph-ill/Anon-TV",
       skills: ["Google TV", "Android", "Imageboard API", "Media Streaming"],
     },
     {
-      name: "Heat Death",
+      name: "☀️ Heat Death",
       description:
         "A game about the death of a world and its inhabitants. A side scrolling exploration and adventure video game created with Aseprite, Wick Editor, GIMP & Audacity.",
       link: "https://github.com/Euphonia-Games/Heat-Death",
