@@ -94,13 +94,6 @@ if (isAuthenticated) {
             </button>
           </div>
         </form>
-        
-        <!-- Debug info (remove in production) -->
-        <div class="mt-4 p-3 bg-gray-100 border border-gray-300 text-gray-600 rounded text-xs">
-          <p>Debug: Environment variable set: {process.env.ADMIN_PASSWORD ? 'Yes' : 'No'}</p>
-          <p>Debug: Password length: {ADMIN_PASSWORD.length}</p>
-          <p>Debug: Password value: {ADMIN_PASSWORD === 'default-password-change-me' ? 'Using default' : 'Custom password set'}</p>
-        </div>
       </div>
     </body>
   </html>
