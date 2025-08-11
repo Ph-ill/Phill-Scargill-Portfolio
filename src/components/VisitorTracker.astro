@@ -7,24 +7,33 @@
   (function() {
     'use strict';
     
+    console.log('VisitorTracker: Script loaded and executing');
+    
     let sessionId = localStorage.getItem('visitor_session_id');
     let pageStartTime = Date.now();
     let currentPage = window.location.pathname;
+    
+    console.log('VisitorTracker: Initial values:', { sessionId, currentPage, pageStartTime });
     
     // Generate session ID if none exists
     if (!sessionId) {
       sessionId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
       localStorage.setItem('visitor_session_id', sessionId);
+      console.log('VisitorTracker: Generated new session ID:', sessionId);
     }
     
     // Track page view when page loads
     function trackPageView() {
+      console.log('VisitorTracker: trackPageView called');
+      
       const trackingData = {
         page: currentPage,
         sessionId: sessionId,
         visitDuration: 0,
         timestamp: new Date().toISOString()
       };
+      
+      console.log('VisitorTracker: Sending tracking data:', trackingData);
       
       // Send tracking data
       fetch('/api/track', {
@@ -33,14 +42,24 @@
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(trackingData)
-      }).catch(error => {
-        // Silently fail - don't interrupt user experience
-        console.debug('Tracking failed:', error);
+      })
+      .then(response => {
+        console.log('VisitorTracker: API response status:', response.status);
+        return response.json();
+      })
+      .then(data => {
+        console.log('VisitorTracker: API response data:', data);
+      })
+      .catch(error => {
+        // Log errors more visibly
+        console.error('VisitorTracker: Tracking failed:', error);
       });
     }
     
     // Track page exit and duration
     function trackPageExit() {
+      console.log('VisitorTracker: trackPageExit called');
+      
       const duration = Math.round((Date.now() - pageStartTime) / 1000);
       
       const trackingData = {
@@ -50,6 +69,8 @@
         timestamp: new Date().toISOString()
       };
       
+      console.log('VisitorTracker: Sending exit tracking data:', trackingData);
+      
       // Send exit tracking data
       fetch('/api/track', {
         method: 'POST',
@@ -57,24 +78,34 @@
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(trackingData)
-      }).catch(error => {
-        // Silently fail
-        console.debug('Exit tracking failed:', error);
+      })
+      .then(response => {
+        console.log('VisitorTracker: Exit API response status:', response.status);
+        return response.json();
+      })
+      .then(data => {
+        console.log('VisitorTracker: Exit API response data:', data);
+      })
+      .catch(error => {
+        console.error('VisitorTracker: Exit tracking failed:', error);
       });
     }
     
     // Track when user navigates away
     function handlePageHide() {
+      console.log('VisitorTracker: Page hide event triggered');
       trackPageExit();
     }
     
     // Track when user closes tab/window
     function handleBeforeUnload() {
+      console.log('VisitorTracker: Before unload event triggered');
       trackPageExit();
     }
     
     // Track when user navigates to different page (SPA navigation)
     function handlePopState() {
+      console.log('VisitorTracker: Pop state event triggered');
       trackPageExit();
       currentPage = window.location.pathname;
       pageStartTime = Date.now();
@@ -83,6 +114,8 @@
     
     // Initialize tracking
     function initTracking() {
+      console.log('VisitorTracker: Initializing tracking');
+      
       // Track initial page view
       trackPageView();
       
@@ -91,10 +124,13 @@
       window.addEventListener('beforeunload', handleBeforeUnload);
       window.addEventListener('popstate', handlePopState);
       
+      console.log('VisitorTracker: Event listeners set up');
+      
       // Track navigation for SPAs
       let currentUrl = window.location.href;
       const observer = new MutationObserver(() => {
         if (window.location.href !== currentUrl) {
+          console.log('VisitorTracker: URL change detected');
           trackPageExit();
           currentUrl = window.location.href;
           currentPage = window.location.pathname;
@@ -107,12 +143,17 @@
         childList: true,
         subtree: true
       });
+      
+      console.log('VisitorTracker: MutationObserver set up');
+      console.log('VisitorTracker: Tracking initialization complete');
     }
     
     // Start tracking when DOM is ready
     if (document.readyState === 'loading') {
+      console.log('VisitorTracker: DOM still loading, waiting for DOMContentLoaded');
       document.addEventListener('DOMContentLoaded', initTracking);
     } else {
+      console.log('VisitorTracker: DOM already ready, initializing immediately');
       initTracking();
     }
   })();
