@@ -5,32 +5,34 @@ const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
 
 {
   hasExperience && (
-    <section id="experience" class="p-8 sm:p-12 md:p-16 lg:p-24">
+    <section id="experience" class="p-8 sm:p-12 md:p-16 lg:p-24" aria-labelledby="experience-heading">
       <div>
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           <div class="lg:col-span-4">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
+            <h2 id="experience-heading" class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
               Experience
             </h2>
             <div
               class="w-[75px] h-[5px] mt-2 rounded-full"
               style={`background-color: ${siteConfig.accentColor}`}
+              aria-hidden="true"
             />
           </div>
 
           <div class="lg:col-span-8">
-            <div class="relative">
+            <div class="relative" role="list" aria-label="Professional work experience timeline">
               {siteConfig.experience.map((exp, index) => (
-                <div class="relative mb-12 last:mb-0">
+                <div class="relative mb-12 last:mb-0" role="listitem">
                   {/* Timeline dot at top of card */}
                   <div
                     class="absolute left-1/2 -top-2 w-4 h-4 bg-white border-2 rounded-full -translate-x-1/2 z-20 transition-all duration-300"
                     style={`border-color: ${siteConfig.accentColor}; background-color: ${siteConfig.accentColor}`}
+                    aria-hidden="true"
                   />
 
                   {/* Connecting line below card */}
                   {index < siteConfig.experience.length - 1 && (
-                    <div class="absolute left-1/2 bottom-0 w-0.5 h-12 bg-gray-300 -translate-x-1/2 translate-y-full z-10" />
+                    <div class="absolute left-1/2 bottom-0 w-0.5 h-12 bg-gray-300 -translate-x-1/2 translate-y-full z-10" aria-hidden="true" />
                   )}
 
                   {/* Experience card */}
@@ -47,15 +49,15 @@ const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
                           {exp.company}
                         </p>
                       </div>
-                      <span class="text-xs sm:text-sm text-gray-500 mt-2 sm:mt-0">
+                      <time class="text-xs sm:text-sm text-gray-500 mt-2 sm:mt-0" datetime={exp.dateRange}>
                         {exp.dateRange}
-                      </span>
+                      </time>
                     </div>
 
-                    <ul class="space-y-2">
-                      {exp.bullets.map((bullet) => (
-                        <li class="flex items-start">
-                          <span class="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mt-2 mr-3 flex-shrink-0" />
+                    <ul class="space-y-2" role="list" aria-label={`Key responsibilities and achievements at ${exp.company}`}>
+                      {exp.bullets.map((bullet, bulletIndex) => (
+                        <li class="flex items-start" role="listitem">
+                          <span class="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mt-2 mr-3 flex-shrink-0" aria-hidden="true" />
                           <span class="text-sm sm:text-base text-gray-600">
                             {bullet}
                           </span>

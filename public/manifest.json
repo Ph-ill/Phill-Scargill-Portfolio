@@ -1,0 +1,21 @@
+{
+  "name": "Phill Scargill - Control Systems Engineer Portfolio",
+  "short_name": "Phill Scargill",
+  "description": "Professional portfolio showcasing expertise in control systems engineering, PLC programming, and full-stack development",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "productivity", "utilities"],
+  "lang": "en",
+  "dir": "ltr"
+}

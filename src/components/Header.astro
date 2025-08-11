@@ -9,23 +9,29 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 <header
   id="header"
   class="fixed top-0 left-0 right-0 z-50 hidden md:block transition-all duration-300"
+  role="banner"
+  aria-label="Main navigation menu"
 >
-  <nav class="max-w-7xl mx-auto px-8 py-4">
-    <ul class="flex items-center gap-8 justify-center">
-      <li>
+  <nav class="max-w-7xl mx-auto px-8 py-4" role="navigation" aria-label="Primary navigation">
+    <ul class="flex items-center gap-8 justify-center" role="menubar">
+      <li role="none">
         <a
           href="#about"
           class="text-gray-700 hover:text-black transition-colors font-medium"
+          role="menuitem"
+          aria-label="Navigate to About section"
         >
           About
         </a>
       </li>
       {
         hasProjects && (
-          <li>
+          <li role="none">
             <a
               href="#projects"
               class="text-gray-700 hover:text-black transition-colors font-medium"
+              role="menuitem"
+              aria-label="Navigate to Projects section"
             >
               Projects
             </a>
@@ -34,10 +40,12 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
       }
       {
         hasExperience && (
-          <li>
+          <li role="none">
             <a
               href="#experience"
               class="text-gray-700 hover:text-black transition-colors font-medium"
+              role="menuitem"
+              aria-label="Navigate to Experience section"
             >
               Experience
             </a>
@@ -46,22 +54,26 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
       }
       {
         hasEducation && (
-          <li>
+          <li role="none">
             <a
               href="#education"
               class="text-gray-700 hover:text-black transition-colors font-medium"
+              role="menuitem"
+              aria-label="Navigate to Education section"
             >
               Education
             </a>
           </li>
         )
       }
-      <li>
+      <li role="none">
         <a
           href={siteConfig.resume}
           target="_blank"
           rel="noopener noreferrer"
           class="text-gray-700 hover:text-black transition-colors font-medium"
+          role="menuitem"
+          aria-label={`Download ${siteConfig.name}'s resume (opens in new tab)`}
         >
           Resume
         </a>

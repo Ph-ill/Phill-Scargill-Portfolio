@@ -14,26 +14,85 @@ import "../styles/global.css";
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
+    
+    <!-- Primary Meta Tags -->
+    <meta name="title" content={`${siteConfig.name} - ${siteConfig.title}`} />
     <meta name="description" content={siteConfig.description} />
+    <meta name="keywords" content="control systems engineer, PLC programming, automation, full-stack development, industrial automation, manufacturing, energy sector" />
+    <meta name="author" content={siteConfig.name} />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://phill-scargill.com/" />
+    <meta property="og:title" content={`${siteConfig.name} - ${siteConfig.title}`} />
+    <meta property="og:description" content={siteConfig.description} />
+    <meta property="og:image" content="/profile-photo.jpg" />
+    <meta property="og:site_name" content={`${siteConfig.name} Portfolio`} />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://phill-scargill.com/" />
+    <meta property="twitter:title" content={`${siteConfig.name} - ${siteConfig.title}`} />
+    <meta property="twitter:description" content={siteConfig.description} />
+    <meta property="twitter:image" content="/profile-photo.jpg" />
+    
+    <!-- Additional SEO -->
+    <meta name="theme-color" content={siteConfig.accentColor} />
+    <meta name="msapplication-TileColor" content={siteConfig.accentColor} />
+    <link rel="canonical" href="https://phill-scargill.com/" />
+    
+    <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
       rel="stylesheet"
     />
+    
     <title>{siteConfig.name} - {siteConfig.title}</title>
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": siteConfig.name,
+      "jobTitle": siteConfig.title,
+      "description": siteConfig.description,
+      "url": "https://phill-scargill.com/",
+      "image": "/profile-photo.jpg",
+      "sameAs": [
+        siteConfig.social?.github,
+        siteConfig.social?.linkedin,
+        siteConfig.social?.email ? `mailto:${siteConfig.social.email}` : null
+      ].filter(Boolean),
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Control Systems Engineering"
+      },
+      "knowsAbout": [
+        "PLC Programming",
+        "Industrial Automation",
+        "Control Systems",
+        "Full-Stack Development",
+        "Manufacturing Systems",
+        "Energy Sector Automation"
+      ]
+    })} />
   </head>
   <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <Header />
-    <section>
+    <main id="main-content">
       <Hero />
       <About />
       <Projects />
       <Experience />
       <Education />
-    </section>
+    </main>
     <Footer />
   </body>
 </html>
