@@ -37,10 +37,10 @@ A personal portfolio website showcasing my work as a Control Systems Engineer, f
 ## Screenshots
 
 ### Main Portfolio Page
-![Main Portfolio Page](https://raw.githubusercontent.com/Ph-ill/phill-portfolio/master/Images/Main.png)
+![Main Portfolio Page](./Images/Main.png)
 
 ### Analytics Dashboard
-![Analytics Dashboard](https://raw.githubusercontent.com/Ph-ill/phill-portfolio/master/Images/analytics.png)
+![Analytics Dashboard](./Images/analytics.png)
 
 ## Technologies Used
 
