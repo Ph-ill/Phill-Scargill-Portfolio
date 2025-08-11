@@ -11,6 +11,10 @@ export default defineConfig({
     port: 90,
     host: '0.0.0.0'
   }),
+  server: {
+    port: 90,
+    host: '0.0.0.0'
+  },
   vite: {
     plugins: [tailwindcss()],
   },

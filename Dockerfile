@@ -33,15 +33,12 @@ COPY --from=builder /app/package*.json ./
 # Create data directory
 RUN mkdir -p /app/data
 
-# Create startup script
-RUN echo '#!/bin/sh\n\
-cd /app\n\
-export HOST=0.0.0.0\n\
-export PORT=90\n\
-node ./dist/server/entry.mjs' > /app/start.sh && chmod +x /app/start.sh
+# Set environment variables for port
+ENV HOST=0.0.0.0
+ENV PORT=90
 
 # Expose port 90
 EXPOSE 90
 
-# Start using the custom script
-CMD ["/app/start.sh"] 
+# Start the Node.js server directly
+CMD ["node", "./dist/server/entry.mjs"] 
