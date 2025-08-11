@@ -1,18 +1,53 @@
 # Phill Scargill - Portfolio
 
-A personal portfolio website showcasing my work as a Control Systems Engineer.
+A personal portfolio website showcasing my work as a Control Systems Engineer, forked from [Ryan Fitzgerald's DevPortfolio template](https://github.com/RyanFitzgerald/devportfolio).
 
-## About
+## Changes Made to Original Template
 
-This portfolio is forked from [Ryan Fitzgerald's DevPortfolio template](https://github.com/RyanFitzgerald/devportfolio) and customized to showcase my experience in automation, PLC programming, and full-stack development.
+### Design & UI Enhancements
+- **Profile Picture**: Added responsive profile photo that scales properly on both PC and mobile
+- **Thought Bubble**: Added animated floating thought bubble with "Thinking in ladder logic 🪜" text
+- **Project Animations**: Enhanced project boxes with floating bubble emoji animations on hover
+- **Responsive Layout**: Fixed name wrapping issues and improved mobile scaling
 
-## Purpose
+### Technical Infrastructure
+- **Framework Migration**: Converted from static HTML/CSS to **Astro** with **Tailwind CSS**
+- **Server-Side Rendering**: Implemented `output: 'server'` for dynamic functionality
+- **Docker Deployment**: Containerized with Node.js runtime and persistent data volumes
+- **Nginx Proxy**: Configured for production deployment with SSL support
 
-This portfolio serves as my professional online presence, highlighting my expertise in control systems engineering across industrial, manufacturing, and energy sectors.
+### Visitor Tracking System
+- **Self-Hosted Analytics**: Built-in visitor tracking without third-party services
+- **Data Collection**: Tracks page views, unique visitors, IP addresses, location, visit duration, and referrer data
+- **Persistent Storage**: File-based JSON storage with Docker volume persistence
+- **Real-Time Dashboard**: Auto-refreshing admin panel that updates every 30 seconds
 
-## Technologies
+### Accessibility & SEO
+- **Meta Tags**: Comprehensive Open Graph, Twitter Cards, and SEO meta tags
+- **Structured Data**: JSON-LD schema markup for better search engine understanding
+- **ARIA Attributes**: Enhanced screen reader support and semantic HTML
+- **Focus Management**: Improved keyboard navigation and focus indicators
+- **Robots.txt & Sitemap**: Search engine optimization files
 
-Built with Astro and Tailwind CSS, deployed using Docker.
+### Security Features
+- **Password Protection**: Secure admin dashboard with environment variable authentication
+- **Data Privacy**: Visitor data stored locally, no external tracking services
+- **Secure Headers**: Proper cache control and security headers
+
+## Screenshots
+
+### Main Portfolio Page
+![Main Portfolio Page](Images/Main.png)
+
+### Analytics Dashboard
+![Analytics Dashboard](Images/analytics.png)
+
+## Technologies Used
+
+- **Frontend**: Astro, Tailwind CSS, TypeScript
+- **Backend**: Node.js, File system storage
+- **Deployment**: Docker, Nginx Proxy Manager
+- **Hosting**: Self-hosted on home server
 
 ## Contact
 
