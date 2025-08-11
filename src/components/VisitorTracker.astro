@@ -36,7 +36,7 @@
       console.log('VisitorTracker: Sending tracking data:', trackingData);
       
       // Send tracking data
-      fetch('/track-visitor', {
+      fetch('/api/track-visitor', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -103,7 +103,7 @@
       console.log('VisitorTracker: Sending exit tracking data:', trackingData);
       
       // Send exit tracking data
-      fetch('/track-visitor', {
+      fetch('/api/track-visitor', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
