@@ -9,9 +9,10 @@ services:
     restart: unless-stopped
     environment:
       - NODE_ENV=production
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-default-password-change-me}
     volumes:
-      # Optional: mount logs for debugging
-      - ./logs:/var/log/nginx
+      # Mount data directory for persistent visitor tracking
+      - ./data:/app/data
     networks:
       - Shared
 

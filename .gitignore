@@ -26,3 +26,11 @@ pnpm-debug.log*
 # editor and IDE settings
 .vscode/
 .cursor/
+
+# visitor tracking data
+data/
+
+# environment variables
+.env
+.env.local
+.env.production

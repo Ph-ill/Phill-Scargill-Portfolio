@@ -1,0 +1,13 @@
+---
+// Logout endpoint - clear admin authentication
+Astro.cookies.set('admin_auth', '', {
+  path: '/',
+  httpOnly: true,
+  secure: true,
+  sameSite: 'strict',
+  maxAge: 0 // Expire immediately
+});
+
+// Redirect to admin login
+return Astro.redirect('/admin');
+---

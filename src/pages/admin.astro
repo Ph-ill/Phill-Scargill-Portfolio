@@ -1,0 +1,208 @@
+---
+import { siteConfig } from "../config";
+import "../styles/global.css";
+
+// Simple password protection
+const ADMIN_PASSWORD = import.meta.env.ADMIN_PASSWORD || "default-password-change-me";
+const isAuthenticated = Astro.cookies.get('admin_auth')?.value === ADMIN_PASSWORD;
+
+// Handle login form submission
+if (Astro.request.method === 'POST') {
+  const formData = await Astro.request.formData();
+  const password = formData.get('password');
+  
+  if (password === ADMIN_PASSWORD) {
+    Astro.cookies.set('admin_auth', ADMIN_PASSWORD, {
+      path: '/',
+      httpOnly: true,
+      secure: true,
+      sameSite: 'strict',
+      maxAge: 60 * 60 * 24 // 24 hours
+    });
+    return Astro.redirect('/admin');
+  }
+}
+
+// Read visitor data from outside web root
+let visitors: any[] = [];
+if (isAuthenticated) {
+  try {
+    const fs = await import('fs/promises');
+    const path = await import('path');
+    const dataDir = path.join(process.cwd(), 'data');
+    const visitorsFile = path.join(dataDir, 'visitors.json');
+    
+    try {
+      const data = await fs.readFile(visitorsFile, 'utf-8');
+      visitors = JSON.parse(data);
+    } catch (error) {
+      visitors = [];
+    }
+  } catch (error) {
+    visitors = [];
+  }
+
+  // Sort by timestamp (newest first)
+  visitors.sort((a: any, b: any) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+}
+---
+
+{!isAuthenticated ? (
+  <html lang="en">
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Admin Login - {siteConfig.name}</title>
+      <meta name="robots" content="noindex, nofollow" />
+    </head>
+    <body class="bg-gray-50 min-h-screen flex items-center justify-center">
+      <div class="max-w-md w-full space-y-8">
+        <div>
+          <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            Admin Access Required
+          </h2>
+          <p class="mt-2 text-center text-sm text-gray-600">
+            Enter password to view visitor analytics
+          </p>
+        </div>
+        <form class="mt-8 space-y-6" method="POST">
+          <div>
+            <label for="password" class="sr-only">Password</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              required
+              class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+              placeholder="Enter admin password"
+            />
+          </div>
+          <div>
+            <button
+              type="submit"
+              class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            >
+              Access Dashboard
+            </button>
+          </div>
+        </form>
+      </div>
+    </body>
+  </html>
+) : (
+  <html lang="en">
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Admin Dashboard - {siteConfig.name}</title>
+      <meta name="robots" content="noindex, nofollow" />
+    </head>
+    <body class="bg-gray-50 min-h-screen">
+      <div class="container mx-auto px-4 py-8">
+        <header class="mb-8 flex justify-between items-center">
+          <div>
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">Visitor Analytics Dashboard</h1>
+            <p class="text-gray-600">Total visitors: {visitors.length}</p>
+          </div>
+          <a href="/admin/logout" class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors">
+            Logout
+          </a>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
+          <!-- Stats Cards -->
+          <div class="bg-white rounded-lg shadow p-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Total Visits</h3>
+            <p class="text-3xl font-bold text-blue-600">{visitors.length}</p>
+          </div>
+          
+          <div class="bg-white rounded-lg shadow p-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Unique IPs</h3>
+            <p class="text-3xl font-bold text-green-600">{new Set(visitors.map((v: any) => v.ip)).size}</p>
+          </div>
+          
+          <div class="bg-white rounded-lg shadow p-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Today</h3>
+            <p class="text-3xl font-bold text-purple-600">{
+              visitors.filter((v: any) => {
+                const today = new Date().toDateString();
+                const visitDate = new Date(v.timestamp).toDateString();
+                return today === visitDate;
+              }).length
+            }</p>
+          </div>
+          
+          <div class="bg-white rounded-lg shadow p-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">This Week</h3>
+            <p class="text-3xl font-bold text-orange-600">{
+              visitors.filter((v: any) => {
+                const weekAgo = new Date();
+                weekAgo.setDate(weekAgo.getDate() - 7);
+                return new Date(v.timestamp) > weekAgo;
+              }).length
+            }</p>
+          </div>
+        </div>
+
+        <!-- Visitor Log Table -->
+        <div class="bg-white rounded-lg shadow overflow-hidden">
+          <div class="px-6 py-4 border-b border-gray-200">
+            <h2 class="text-xl font-semibold text-gray-900">Visitor Log</h2>
+          </div>
+          
+          <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Time</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">IP Address</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Page</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Referrer</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Duration</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User Agent</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                {visitors.map((visitor: any, index: number) => (
+                  <tr class={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      {new Date(visitor.timestamp).toLocaleString()}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-mono text-gray-900">
+                      {visitor.ip}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      {visitor.location?.city && visitor.location?.country 
+                        ? `${visitor.location.city}, ${visitor.location.country}`
+                        : visitor.location?.country || 'Unknown'
+                      }
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      {visitor.page}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 max-w-xs truncate">
+                      {visitor.referrer === 'direct' ? 'Direct Visit' : visitor.referrer}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      {visitor.visitDuration > 0 ? `${Math.round(visitor.visitDuration)}s` : 'N/A'}
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-900 max-w-xs truncate" title={visitor.userAgent}>
+                      {visitor.userAgent}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          
+          {visitors.length === 0 && (
+            <div class="px-6 py-12 text-center text-gray-500">
+              <p>No visitor data yet. Visit your main site to start tracking!</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </body>
+  </html>
+)}
