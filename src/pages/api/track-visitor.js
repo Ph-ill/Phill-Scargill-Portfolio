@@ -1,25 +1,17 @@
----
-// API endpoint for tracking visitors
-export async function POST({ request, clientAddress }: { request: Request; clientAddress: string }) {
+// API endpoint for visitor tracking
+export async function POST({ request, clientAddress }) {
   try {
     console.log('Tracking API called - request received');
-    
     const data = await request.json();
     const timestamp = new Date().toISOString();
-    
-    // Get IP address
     const ip = clientAddress || request.headers.get('x-forwarded-for') || 'unknown';
-    
-    // Get referrer
     const referrer = request.headers.get('referer') || 'direct';
-    
-    // Get user agent
     const userAgent = request.headers.get('user-agent') || 'unknown';
     
     console.log('Tracking data:', { ip, page: data.page, referrer, userAgent });
     
     // Create visitor record
-    const visitorRecord: any = {
+    const visitorRecord = {
       timestamp,
       ip,
       page: data.page || '/',
@@ -76,7 +68,7 @@ function generateSessionId() {
 }
 
 // Simple IP geolocation using ipapi.co (free tier)
-async function getLocationFromIP(ip: string) {
+async function getLocationFromIP(ip) {
   if (ip === 'unknown' || ip === '127.0.0.1' || ip.startsWith('192.168.') || ip.startsWith('10.')) {
     return { country: 'local', city: 'local' };
   }
@@ -95,7 +87,7 @@ async function getLocationFromIP(ip: string) {
 }
 
 // Save visitor data to JSON file
-async function saveVisitorData(visitorRecord: any) {
+async function saveVisitorData(visitorRecord) {
   const fs = await import('fs/promises');
   const path = await import('path');
   
