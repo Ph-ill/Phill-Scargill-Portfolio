@@ -36,11 +36,26 @@ A personal portfolio website showcasing my work as a Control Systems Engineer, f
 
 ## Screenshots
 
-### Main Portfolio Page
-![Main Portfolio Page](./Images/Main.png)
-
-### Analytics Dashboard
-![Analytics Dashboard](./Images/analytics.png)
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <a href="Images/Main.png">
+          <img src="Images/Main.png" alt="Main Portfolio Page" width="400"/>
+        </a>
+        <br/>
+        <em>Main portfolio page with profile picture and thought bubble</em>
+      </td>
+      <td align="center">
+        <a href="Images/analytics.png">
+          <img src="Images/analytics.png" alt="Analytics Dashboard" width="400"/>
+        </a>
+        <br/>
+        <em>Real-time visitor analytics dashboard</em>
+      </td>
+    </tr>
+  </table>
+</div>
 
 ## Technologies Used
 
