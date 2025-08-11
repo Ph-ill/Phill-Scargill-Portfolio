@@ -45,10 +45,26 @@
       })
       .then(response => {
         console.log('VisitorTracker: API response status:', response.status);
+        console.log('VisitorTracker: API response headers:', response.headers);
+        
+        // Check if response has content
+        const contentLength = response.headers.get('content-length');
+        console.log('VisitorTracker: Content length:', contentLength);
+        
+        if (contentLength === '0' || !response.body) {
+          console.log('VisitorTracker: Empty response body, skipping JSON parse');
+          return { success: true, emptyResponse: true };
+        }
+        
         return response.json();
       })
       .then(data => {
         console.log('VisitorTracker: API response data:', data);
+        if (data.success) {
+          console.log('VisitorTracker: Tracking successful');
+        } else {
+          console.error('VisitorTracker: Tracking failed:', data.error);
+        }
       })
       .catch(error => {
         // Log errors more visibly

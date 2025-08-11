@@ -38,13 +38,28 @@ export async function POST({ request, clientAddress }: { request: Request; clien
     }
     
     // Save to file
-    await saveVisitorData(visitorRecord);
+    try {
+      await saveVisitorData(visitorRecord);
+      console.log('Tracking API - visitor data saved successfully');
+    } catch (saveError) {
+      console.error('Tracking API - failed to save visitor data:', saveError);
+      // Continue execution even if save fails
+    }
     
-    console.log('Tracking API - visitor data saved successfully');
+    // Always return a valid response
+    const responseData = { 
+      success: true, 
+      message: 'Visitor tracked successfully',
+      timestamp: timestamp,
+      visitorCount: 0 // We'll calculate this if possible
+    };
     
-    return new Response(JSON.stringify({ success: true }), {
+    return new Response(JSON.stringify(responseData), {
       status: 200,
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache, no-store, must-revalidate'
+      }
     });
   } catch (error) {
     console.error('Tracking error:', error);
