@@ -33,8 +33,15 @@ COPY --from=builder /app/package*.json ./
 # Create data directory
 RUN mkdir -p /app/data
 
+# Create startup script
+RUN echo '#!/bin/sh\n\
+cd /app\n\
+export HOST=0.0.0.0\n\
+export PORT=90\n\
+node ./dist/server/entry.mjs' > /app/start.sh && chmod +x /app/start.sh
+
 # Expose port 90
 EXPOSE 90
 
-# Start the Node.js server directly
-CMD ["node", "./dist/server/entry.mjs"] 
+# Start using the custom script
+CMD ["/app/start.sh"] 
