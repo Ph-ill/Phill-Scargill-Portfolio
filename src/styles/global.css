@@ -81,11 +81,8 @@ button:focus-visible,
   border-radius: 4px;
 }
 
-/* Improved link underlines for better readability */
-a:not([class*="text-"]) {
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
+/* Improved link underlines for better readability - only for links without specific text classes */
+/* Removed automatic underlining to preserve design */
 
 /* Better form element focus styles */
 input:focus-visible,
