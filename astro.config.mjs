@@ -7,18 +7,12 @@ import node from "@astrojs/node";
 export default defineConfig({
   output: 'server', // Enable server-side rendering for admin panel and API
   adapter: node({
-    mode: 'standalone',
-    port: 90,
-    host: '0.0.0.0'
+    mode: 'standalone'
   }),
-  server: {
-    port: 90,
-    host: '0.0.0.0'
-  },
   vite: {
     plugins: [tailwindcss()],
     define: {
       'process.env.ADMIN_PASSWORD': JSON.stringify(process.env.ADMIN_PASSWORD)
     }
-  },
+  }
 });
