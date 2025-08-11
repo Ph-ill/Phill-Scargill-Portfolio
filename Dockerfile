@@ -36,5 +36,5 @@ RUN mkdir -p /app/data
 # Expose port 90
 EXPOSE 90
 
-# Start Astro in server mode
-CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0", "--port", "90"] 
+# Start the Node.js server directly
+CMD ["node", "./dist/server/entry.mjs"] 
