@@ -36,7 +36,7 @@
       console.log('VisitorTracker: Sending tracking data:', trackingData);
       
       // Send tracking data
-      fetch('/api/track', {
+      fetch('/track-visitor', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -54,7 +54,12 @@
         if (contentType && contentType.includes('text/html')) {
           console.error('VisitorTracker: ERROR - API returned HTML instead of JSON. This suggests a proxy configuration issue.');
           console.error('VisitorTracker: Check your Nginx Proxy Manager configuration for the /api/track route.');
-          return { success: false, error: 'Proxy configuration issue - API returned HTML' };
+          
+          // Let's see what HTML is actually being returned
+          return response.text().then(htmlContent => {
+            console.error('VisitorTracker: HTML content received:', htmlContent.substring(0, 500) + '...');
+            return { success: false, error: 'Proxy configuration issue - API returned HTML' };
+          });
         }
         
         // Check if response has content
@@ -98,7 +103,7 @@
       console.log('VisitorTracker: Sending exit tracking data:', trackingData);
       
       // Send exit tracking data
-      fetch('/api/track', {
+      fetch('/track-visitor', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
