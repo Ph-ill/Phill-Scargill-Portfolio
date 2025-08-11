@@ -2,6 +2,8 @@
 // API endpoint for tracking visitors
 export async function POST({ request, clientAddress }: { request: Request; clientAddress: string }) {
   try {
+    console.log('Tracking API called - request received');
+    
     const data = await request.json();
     const timestamp = new Date().toISOString();
     
@@ -13,6 +15,8 @@ export async function POST({ request, clientAddress }: { request: Request; clien
     
     // Get user agent
     const userAgent = request.headers.get('user-agent') || 'unknown';
+    
+    console.log('Tracking data:', { ip, page: data.page, referrer, userAgent });
     
     // Create visitor record
     const visitorRecord: any = {
@@ -35,6 +39,8 @@ export async function POST({ request, clientAddress }: { request: Request; clien
     
     // Save to file
     await saveVisitorData(visitorRecord);
+    
+    console.log('Tracking API - visitor data saved successfully');
     
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
@@ -78,6 +84,7 @@ async function saveVisitorData(visitorRecord: any) {
   const fs = await import('fs/promises');
   const path = await import('path');
   
+  // Use the correct path for Docker container
   const dataDir = path.join(process.cwd(), 'data');
   const visitorsFile = path.join(dataDir, 'visitors.json');
   
@@ -100,8 +107,13 @@ async function saveVisitorData(visitorRecord: any) {
     
     // Save back to file
     await fs.writeFile(visitorsFile, JSON.stringify(visitors, null, 2));
+    
+    // Debug logging
+    console.log(`Visitor data saved: ${visitors.length} total visitors`);
   } catch (error) {
     console.error('Error saving visitor data:', error);
+    console.error('Data directory:', dataDir);
+    console.error('Visitors file:', visitorsFile);
   }
 }
 ---
