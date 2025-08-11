@@ -2,11 +2,12 @@
 import { siteConfig } from "../config";
 import "../styles/global.css";
 
-// Simple password protection
-const ADMIN_PASSWORD = import.meta.env.ADMIN_PASSWORD || "default-password-change-me";
+// Simple password protection - use process.env for server-side
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "default-password-change-me";
 const isAuthenticated = Astro.cookies.get('admin_auth')?.value === ADMIN_PASSWORD;
 
 // Handle login form submission
+let errorMessage = "";
 if (Astro.request.method === 'POST') {
   const formData = await Astro.request.formData();
   const password = formData.get('password');
@@ -20,6 +21,8 @@ if (Astro.request.method === 'POST') {
       maxAge: 60 * 60 * 24 // 24 hours
     });
     return Astro.redirect('/admin');
+  } else {
+    errorMessage = "Incorrect password. Please try again.";
   }
 }
 
@@ -64,6 +67,11 @@ if (isAuthenticated) {
           <p class="mt-2 text-center text-sm text-gray-600">
             Enter password to view visitor analytics
           </p>
+          {errorMessage && (
+            <div class="mt-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+              {errorMessage}
+            </div>
+          )}
         </div>
         <form class="mt-8 space-y-6" method="POST">
           <div>
@@ -86,6 +94,13 @@ if (isAuthenticated) {
             </button>
           </div>
         </form>
+        
+        <!-- Debug info (remove in production) -->
+        <div class="mt-4 p-3 bg-gray-100 border border-gray-300 text-gray-600 rounded text-xs">
+          <p>Debug: Environment variable set: {process.env.ADMIN_PASSWORD ? 'Yes' : 'No'}</p>
+          <p>Debug: Password length: {ADMIN_PASSWORD.length}</p>
+          <p>Debug: Password value: {ADMIN_PASSWORD === 'default-password-change-me' ? 'Using default' : 'Custom password set'}</p>
+        </div>
       </div>
     </body>
   </html>

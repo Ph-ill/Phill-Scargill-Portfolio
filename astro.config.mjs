@@ -17,5 +17,8 @@ export default defineConfig({
   },
   vite: {
     plugins: [tailwindcss()],
+    define: {
+      'process.env.ADMIN_PASSWORD': JSON.stringify(process.env.ADMIN_PASSWORD)
+    }
   },
 });
