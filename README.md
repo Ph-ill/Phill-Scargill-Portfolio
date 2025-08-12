@@ -11,7 +11,6 @@ A personal portfolio website showcasing my work as a Control Systems Engineer, f
 - **Responsive Layout**: Fixed name wrapping issues and improved mobile scaling
 
 ### Technical Infrastructure
-- **Framework Migration**: Converted from static HTML/CSS to **Astro** with **Tailwind CSS**
 - **Server-Side Rendering**: Implemented `output: 'server'` for dynamic functionality
 - **Docker Deployment**: Containerized with Node.js runtime and persistent data volumes
 - **Nginx Proxy**: Configured for production deployment with SSL support
