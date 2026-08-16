@@ -1,9 +1,9 @@
 export const siteConfig = {
   name: "Phill Scargill",
-  title: "Control Systems Engineer",
-  description: "Portfolio website of Phill Scargill - Control Systems Engineer with expertise in automation, PLC programming, and full-stack development",
+  title: "Automation & Controls Specialist at SpaceX",
+  description: "Portfolio website of Phill Scargill - Automation & Controls Specialist at SpaceX with over 7 years of expertise in industrial automation, PLC programming, and full-stack development",
   accentColor: "#8b5cf6",
-  location: "Austin, TX 🤠",
+  location: "Bastrop, TX 🤠",
   social: {
     email: "phill.scargill@gmail.com",
     linkedin: "https://www.linkedin.com/in/phillip-scargill-4a709a274/",
@@ -12,7 +12,7 @@ export const siteConfig = {
   },
   resume: "/Resume.pdf",
   aboutMe:
-    "Experienced Control Systems Engineer with over 7 years of hands-on expertise in automation across industrial, manufacturing, and energy sectors. Multidisciplinary background in PLC programming, SCADA/HMI development, full-stack software development, system administration, and eCommerce operations. Relocated to the U.S. with valid work authorization (EAD). Currently exploring new Control Systems Engineering roles while actively developing open-source software.",
+    "Automation & Controls Specialist at SpaceX, working on industrial automation and manufacturing systems supporting Starlink production in Texas. Over 7 years of hands-on experience in controls engineering, industrial automation, manufacturing, and energy, with a background spanning PLC programming, SCADA/HMI development, commissioning, troubleshooting, and full-stack software engineering. Passionate about automation, system observability, and industrial software, and finding elegant ways to make complex systems easier to understand, maintain, and operate.",
   skills: [
     "PLC Programming", 
     "SCADA/HMI", 
@@ -55,6 +55,16 @@ export const siteConfig = {
     },
   ],
   experience: [
+    {
+      company: "SpaceX",
+      title: "Automation & Controls Specialist",
+      dateRange: "2025 - Present",
+      bullets: [
+        "Supporting industrial automation and manufacturing systems for Starlink production in Texas",
+        "Working on PLC programming, SCADA/HMI development, commissioning, and troubleshooting of high-volume automated manufacturing systems",
+        "Applying full-stack software engineering, system administration, and observability to bridge industrial automation with modern tooling",
+      ],
+    },
     {
       company: "Freelance",
       title: "Web Developer & eCommerce Marketer",

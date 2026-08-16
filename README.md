@@ -1,6 +1,6 @@
 # Phill Scargill - Portfolio
 
-A personal portfolio website showcasing my work as a Control Systems Engineer, forked from [Ryan Fitzgerald's DevPortfolio template](https://github.com/RyanFitzgerald/devportfolio).
+A personal portfolio website showcasing my work as an Automation & Controls Specialist at SpaceX, forked from [Ryan Fitzgerald's DevPortfolio template](https://github.com/RyanFitzgerald/devportfolio).
 
 ## Changes Made to Original Template
 
@@ -68,7 +68,7 @@ A personal portfolio website showcasing my work as a Control Systems Engineer, f
 - **Email:** phill.scargill@gmail.com
 - **LinkedIn:** [Phillip Scargill](https://www.linkedin.com/in/phillip-scargill-4a709a274/)
 - **GitHub:** [Ph-ill](https://github.com/Ph-ill)
-- **Location:** Austin, TX
+- **Location:** Bastrop, TX
 
 ## License
 
