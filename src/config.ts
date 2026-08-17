@@ -58,7 +58,7 @@ export const siteConfig = {
     {
       company: "SpaceX",
       title: "Automation & Controls Specialist",
-      dateRange: "2025 - Present",
+      dateRange: "2026 - Present",
       bullets: [
         "Supporting industrial automation and manufacturing systems for Starlink production in Texas",
         "Working on PLC programming, SCADA/HMI development, commissioning, and troubleshooting of high-volume automated manufacturing systems",
